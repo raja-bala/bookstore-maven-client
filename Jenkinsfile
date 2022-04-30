@@ -3,10 +3,14 @@ pipeline {
     triggers {
             pollSCM '* * * * *'
         }
+         tools {npm "npm"}
           stages {
               stage('Build') {
               steps {
-                  sh '''npm install'''
+                  sh '''
+                  npm install
+                  npm run build
+                  '''
               }
           }
           stage('Test') {
