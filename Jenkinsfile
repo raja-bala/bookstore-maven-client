@@ -3,7 +3,7 @@ pipeline {
     triggers {
             pollSCM '* * * * *'
         }
-         tools {npm "npm"}
+          tools {nodejs "nodejs"}
           stages {
               stage('Build') {
               steps {
