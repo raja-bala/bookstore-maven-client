@@ -18,5 +18,14 @@ pipeline {
                   sh '''npm run test'''
               }
           }
+          stage('Deploy') {
+                steps {
+                  dir("${WORKSPACE}"){
+                          sh '''
+                              git push https://git.heroku.com/bookstore-maven-client.git HEAD:master
+                              '''
+                      }
+                }
+            }
         }
 }
