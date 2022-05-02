@@ -23,7 +23,7 @@ pipeline {
                 steps {
                   dir("${WORKSPACE}"){
                           sh '''
-                              git push https://git.heroku.com/book-store-maven.git HEAD:master
+                              git push https://git.heroku.com/bookstore-maven-client.git HEAD:master
                               '''
                       }
                 }
