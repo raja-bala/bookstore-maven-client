@@ -4,12 +4,12 @@ pipeline {
             pollSCM '* * * * *'
         }
           tools {nodejs "nodejs"}
-          stage('Test') {
-              steps {
-                  sh '''npm run test:nowatch'''
-              }
-          }        
           stages {
+              stage('Test') {
+                            steps {
+                                sh '''npm run test:nowatch'''
+                            }
+                        }            
               stage('Build') {
               steps {
                   sh '''
@@ -18,7 +18,7 @@ pipeline {
                   '''
               }
           }
-
+          
           stage('Deploy') {
                 steps {
                   dir("${WORKSPACE}"){
