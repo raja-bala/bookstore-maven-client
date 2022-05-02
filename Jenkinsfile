@@ -4,6 +4,11 @@ pipeline {
             pollSCM '* * * * *'
         }
           tools {nodejs "nodejs"}
+          stage('Test') {
+              steps {
+                  sh '''npm run test:nowatch'''
+              }
+          }        
           stages {
               stage('Build') {
               steps {
@@ -13,16 +18,12 @@ pipeline {
                   '''
               }
           }
-          stage('Test') {
-              steps {
-                  sh '''npm run test'''
-              }
-          }
+
           stage('Deploy') {
                 steps {
                   dir("${WORKSPACE}"){
                           sh '''
-                              git push https://git.heroku.com/bookstore-maven-client.git HEAD:master
+                              git push https://git.heroku.com/book-store-maven.git HEAD:master
                               '''
                       }
                 }
