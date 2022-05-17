@@ -8,22 +8,24 @@ describe('<BookContainer>', () => {
     BookList.mockImplementation(() => <div>Sample Text</div>);
   });
   it('should render without error', () => {
-    const books = [
-      {
-        id: 1,
-        title: 'test title',
-        description: 'des',
-        releaseYear: 2018,
-      },
-    ];
+    const booksReducer = {
+      books: [
+        {
+          id: 1,
+          title: 'test title',
+          description: 'des',
+          releaseYear: 2018,
+        },
+      ],
+      loading: 'succeeded',
+    };
+
     renderWithRedux(<BookContainer></BookContainer>, {
       preloadedState: {
-        booksReducer: {
-          books,
-        },
+        booksReducer,
       },
     });
-
-    expect(BookList).toHaveBeenCalledWith({ books },{});
+    const books = booksReducer.books;
+    expect(BookList).toHaveBeenCalledWith({ books }, {});
   });
 });
